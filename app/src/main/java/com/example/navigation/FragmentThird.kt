@@ -5,22 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
+import com.example.navigation.databinding.FragmentThirdBinding
 
 class FragmentThird : Fragment() {
-
+    private val args : FragmentThirdArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_third, container, false)
-        view.findViewById<TextView>(R.id.fragment3TextView).text = arguments?.getString("key").toString()
-            view.findViewById<TextView>(R.id.fragment3TextView).setOnClickListener {
+        val binding: FragmentThirdBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_third, container, false)
+        val view = binding.root
 
-                Navigation.findNavController(view).navigate(R.id.thirdFragmentToFirstFragment)
-            }
+        val data  = args.args
+        binding.fragment3TextView.text = data.toString()
+
+        binding.fragment3TextView.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.thirdFragmentToFirstFragment)
+        }
         return view
     }
 

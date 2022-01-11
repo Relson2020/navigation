@@ -29,7 +29,13 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="args2"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
+
     </fragment>
 
     <navigation
@@ -47,9 +53,14 @@
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            </action>
+            <argument
+                android:name="args"
+                app:argType="integer"
+                android:defaultValue="0" />
         </fragment>
 
     </navigation>
-
 </navigation>

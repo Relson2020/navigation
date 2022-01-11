@@ -5,20 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import com.example.navigation.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_second, container, false)
-        view.findViewById<TextView>(R.id.fragment2TextView).setOnClickListener {
-            val bundle = bundleOf("key" to "hey its from the second fragment")
-            Navigation.findNavController(view).navigate(R.id.secondToNestedNavigationGraph,bundle)
+        val binding : FragmentSecondBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_second, container, false)
+        val view = binding.root
+       binding.fragment2TextView.setOnClickListener {
+            val action = SecondFragmentDirections.secondToNestedNavigationGraph(2)
+            Navigation.findNavController(view).navigate(action)
         }
         return view
     }
